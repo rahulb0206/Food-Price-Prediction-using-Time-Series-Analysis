@@ -4,11 +4,9 @@ import joblib
 from datetime import timedelta
 import random
 
-# Load model and data
 data = pd.read_csv(r"/Users/rahulbalasubramani/Desktop/MSIM Study Materials/2nd Sem/IS_MDS/MoDS_FinalProject/final_output/new_engineered_dataset.csv")
 model = joblib.load(r"/Users/rahulbalasubramani/Desktop/MSIM Study Materials/2nd Sem/IS_MDS/MoDS_FinalProject/final_output/xgboost_model.pkl")
 
-# Preprocess recent data for prediction
 data.fillna(data.mean(numeric_only=True), inplace=True)
 data['Previous_Lag'] = data['Previous_Price'].shift(1).bfill()
 data['Rainfall_3m_avg'] = data['Rainfall'].rolling(window=3, min_periods=1).mean()
@@ -39,12 +37,12 @@ for i in range(3):
     for ft, val in zip(temp['Food_Type'], preds):
         predictions.append({"Day+": i+1, "Food_Type": ft, "Predicted_Food_Price": round(val, 2)})
 
-# Output predictions
+#output
 pred_df = pd.DataFrame(predictions)
 print("\n 3-Day Forecast for Selected Food Types:")
 print(pred_df)
 
-# Generate random confidence between 80 and 99 percent
+# generate random confidence between 80 and 99 percent
 print("\n Confidence Estimate (% certainty for 3-day predictions):")
 for food_type in pred_df['Food_Type'].unique():
     random_confidence = round(random.uniform(80, 99), 2)
