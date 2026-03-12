@@ -65,7 +65,7 @@ def train_arima(data):
     model_fit = model.fit()
 
     joblib.dump(model_fit, "models/arima_model_new.pkl")
-    print("✅ ARIMA model saved as 'models/arima_model_new.pkl'")
+    print("\n arima model saved as 'models/arima_model_new.pkl'")
 
 
 def train_lstm(data):
@@ -97,7 +97,7 @@ def train_lstm(data):
     model.save("models/lstm_model_new.h5")
     joblib.dump(scaler, "models/lstm_scaler_new.pkl")
 
-    print("✅ LSTM model and scaler saved as 'models/lstm_model_final.h5' and 'models/lstm_scaler_final.pkl'")
+    print("\n lstm model and scaler saved as 'models/lstm_model_final.h5' and 'models/lstm_scaler_final.pkl'")
 
 
 def train_xgboost_time_split(X, y, preprocessor):
@@ -114,7 +114,7 @@ def train_xgboost_time_split(X, y, preprocessor):
 
     model.fit(X, y)
     joblib.dump(model, "models/xgboost_model_new.pkl")
-    print("✅ XGBoost model saved with engineered features as 'models/xgboost_model_new.pkl'")
+    print("\n XGBoost model saved with engineered features as 'models/xgboost_model_new.pkl'")
 
 
 def show_feature_importance():
@@ -143,13 +143,13 @@ def show_feature_importance():
 def main():
     df = load_data("food_price_prediction_dataset.csv")
 
-    print("\n🔁 Training ARIMA...")
+    print("\nTraining ARIMA...")
     train_arima(df)
 
-    print("\n🔁 Training LSTM...")
+    print("\nTraining LSTM...")
     train_lstm(df)
 
-    print("\n🔁 Preparing data and training XGBoost...")
+    print("\nPreparing data and training XGBoost...")
     X, y, preprocessor = preprocess_data(df)
     train_xgboost_time_split(X, y, preprocessor)
 
