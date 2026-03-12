@@ -38,7 +38,7 @@ def load_data(path):
 
     data.dropna(inplace=True)
     data.to_csv(r"/Users/rahulbalasubramani/Desktop/MSIM Study Materials/2nd Sem/IS_MDS/MoDS_FinalProject/final_output/final_dataset.csv", index=False)
-    print("✅ Saved final dataset with engineered features.")
+    print("**********Saved final dataset with engineered features!!***********")
     return data
 
 def filter_numerical_features_only(preprocessor, importances):
@@ -46,7 +46,7 @@ def filter_numerical_features_only(preprocessor, importances):
     numerical_features = [name for name in feature_names if name.startswith("scale__")]
     importance_dict = {name: imp for name, imp in zip(feature_names, importances) if name in numerical_features and imp > 0.0}
     sorted_features = sorted(importance_dict.items(), key=lambda x: x[1], reverse=True)
-    return zip(*sorted_features)  # returns top_features, top_importances
+    return zip(*sorted_features) 
 
 def plot_filtered_feature_importance(preprocessor, importances):
     top_features, top_importances = filter_numerical_features_only(preprocessor, importances)
@@ -100,11 +100,11 @@ def train_xgboost(X, y, preprocessor):
 
     tscv = TimeSeriesSplit(n_splits=5)
     scores = cross_val_score(model, X, y, cv=tscv, scoring='neg_root_mean_squared_error')
-    print("📊 XGBoost TimeSeries CV RMSE:", -scores.mean())
+    print("XGBoost TimeSeries CV RMSE:", -scores.mean())
 
     model.fit(X, y)
     joblib.dump(model, r"/Users/rahulbalasubramani/Desktop/MSIM Study Materials/2nd Sem/IS_MDS/MoDS_FinalProject/final_output/xgboost_model.pkl")
-    print("✅ XGBoost model saved.")
+    print("XGBoost model saved.")
     return model
 
 def show_filtered_feature_importance(model):
