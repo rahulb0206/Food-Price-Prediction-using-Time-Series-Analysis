@@ -14,7 +14,7 @@ df['Previous_Lag'] = df['Previous_Price'].shift(1).bfill()
 df.dropna(inplace=True)
 
 
-print("\n✅ Descriptive Statistics:\n")
+print("\nDescriptive Statistics:\n")
 print(df.describe())
 
 # Correlation matrix

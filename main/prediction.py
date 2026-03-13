@@ -20,14 +20,14 @@ data['Rainfall_Temp'] = data['Rainfall'] * data['Temperature']
 data['Yield_Demand'] = data['Crop_Yield'] * data['Demand_Index']
 data.dropna(inplace=True)
 
-# Select 5 food types only
+#select 5 food types only
 selected_food_types = data['Food_Type'].unique()[:5]
 data = data[data['Food_Type'].isin(selected_food_types)]
 
-# Get last row for each Food_Type
+#get last row for each Food_Type
 latest_data = data.sort_values(['Food_Type', 'Year', 'Month', 'Day']).groupby('Food_Type').tail(1)
 
-# Predict for 3 future days per type
+#predict for 3 future days per type
 predictions = []
 for i in range(3):
     temp = latest_data.copy()
