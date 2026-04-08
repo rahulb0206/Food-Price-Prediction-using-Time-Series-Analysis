@@ -1,0 +1,69 @@
+# ── Data ──────────────────────────────────────────────────────────────────
+# Keep data/raw and data/processed tracked (synthetic, not sensitive)
+# But exclude any large or external data files added later
+*.csv.gz
+*.parquet
+*.feather
+
+# ── Model artifacts ────────────────────────────────────────────────────────
+# Models are large binaries — regenerate with src/train.py
+outputs/models/*.pkl
+outputs/models/*.h5
+
+# ── Python ────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Jupyter ───────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ── Virtual environments ───────────────────────────────────────────────────
+venv/
+env/
+.env/
+.venv/
+ENV/
+
+# ── OS junk ───────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+
+# ── IDE ────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.code-workspace
+
+# ── Local-only files ───────────────────────────────────────────────────────
+INTERVIEW_PREP.md
+*.local.*
+
+# ── Old scripts (superseded by src/) ──────────────────────────────────────
+main/
+
+# ── Stale root-level artifacts (moved to proper folders) ──────────────────
+engineered_features_sample.csv
+feature_importance_top10.png
+new_engineered_dataset.csv
+next_10_day_prediction_with_bounds.png
+
+# ── Old output folders ─────────────────────────────────────────────────────
+Output_Files/
+models/
+
+# ── Secrets / credentials ─────────────────────────────────────────────────
+.env
+*.env
+secrets.json
+credentials.json
