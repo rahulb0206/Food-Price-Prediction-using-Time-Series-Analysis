@@ -8,16 +8,6 @@
 
 ---
 
-## Team
-
-| Name | GitHub |
-|---|---|
-| Rahul Balasubramani | [@rahulb6](https://github.com/rahulb6) |
-| Rohith Jagadeesan | [@rohithj2](https://github.com/rohithj2) |
-| Ramprasath Loganda Sureshbabu | [@rl43](https://github.com/rl43) |
-
----
-
 ## The Problem
 
 Food prices are volatile, and that volatility hits everyone in the supply chain — farmers planning harvests, retailers setting margins, and policymakers watching inflation. A model that can predict prices a few days out using economic and environmental signals could meaningfully improve procurement and pricing decisions. What makes this non-trivial: no single variable drives food prices. Weather affects supply, inflation affects input costs, and demand spikes during festive seasons. The signal is spread across 16 interacting variables, and it's mostly non-linear.
