@@ -10,11 +10,11 @@
 
 ## The Problem
 
-Food prices are volatile, and that volatility hits everyone in the supply chain — farmers planning harvests, retailers setting margins, and policymakers watching inflation. A model that can predict prices a few days out using economic and environmental signals could meaningfully improve procurement and pricing decisions. What makes this non-trivial: no single variable drives food prices. Weather affects supply, inflation affects input costs, and demand spikes during festive seasons. The signal is spread across 16 interacting variables, and it's mostly non-linear.
+Food prices are volatile and that volatility hits everyone in the supply chain: farmers planning harvests, retailers setting margins and policymakers watching inflation. A model that can predict prices a few days out using economic and environmental signals could meaningfully improve procurement and pricing decisions. What makes this non-trivial: no single variable drives food prices. Weather affects supply, inflation affects input costs, and demand spikes during festive seasons. The signal is spread across 16 interacting variables, and it's mostly non-linear.
 
 ---
 
-## The Dataset — and Why We Built It
+## The Dataset and Why We Built It
 
 No single real-world source had all the variables we needed at daily resolution. FAO price indices exist, but they don't come bundled with local weather, crop yield, and inflation in one clean table. So we generated our own: **1,000 observations spanning 2010–2023**, covering 10 food types (Tomato, Onion, Potato, Carrot, Beans, Apple, Strawberry, Banana, Orange, Grapes).
 
@@ -85,7 +85,7 @@ Tight diagonal clustering, no systematic bias.
 
 ---
 
-### What the model learned — feature importance
+### What the model learned:feature importance
 `Previous_Price` dominates at 52.7%. The second tier — `Temperature_3m_avg` (5%), `Demand_Trend` (4%), `Rainfall` (4%) — adds another 13%.
 
 ![Feature Importance](outputs/figures/05_feature_importance.png)
@@ -184,15 +184,6 @@ For retail planning and procurement budgeting, ±\$0.21 on a \$5.50 item is work
 | **Key dependency** | Requires `Previous_Price` as input; degrades without it |
 | **Known limitations** | Synthetic training data; no shock variables; underperforms at price extremes |
 
----
-
-## What I'd Do Next
-
-1. **Validate against real FAO/USDA data.** That's the only way to know if the synthetic feature design actually generalises.
-2. **Multivariate LSTM with daily features.** The current LSTM sees only the univariate monthly series — all 16 features were discarded. A proper multivariate daily LSTM would be a fairer comparison.
-3. **Price velocity features.** Rolling 7-day and 30-day rate-of-change were on the list but cut due to dataset size.
-4. **Quantile regression for prediction intervals.** XGBoost supports quantile loss — confidence bands are more useful than point forecasts for procurement planning.
-5. **Per-food-type stratified models.** One model for all 10 food types is a simplification that a production system wouldn't make.
 
 ---
 
